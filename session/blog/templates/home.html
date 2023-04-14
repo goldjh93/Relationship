@@ -25,6 +25,7 @@
     <p>{{blog.summary}}</p>
     <p>{{blog.created_at}}</p>
   </a>
+  {% comment %} <a href="{% url 'likes' blog.id %}">♥ {{like_count}}</a> {% endcomment %}
   {% endfor %}
 </div>
 

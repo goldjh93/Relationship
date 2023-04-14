@@ -25,9 +25,19 @@
 <a href="{% url 'edit' blog.id %}">수정하기</a>
 <a href="{% url 'delete' blog.id %}">삭제하기</a>
 <a href="{% url 'new_comment' blog.id %}">댓글 달기</a>
-{#TODO: 좋아요 버튼 만들기 <a></a> 태그#}
+<a href="{% url 'likes' blog.id %}">♥ {{like_count}}</a>
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+        <strong>{{message.tag}}</strong>
+        <ul><li>{{message.message}}</li></ul>
+    {% endfor %}
+</div>
+{% endif %}
 {% for comment in comments %}
 <hr />
 <p>{{comment.content}}</p>
 <p>{{comment.created_at}} 댓글쓴이: {{ comment.author }}</p>
+<a href="{% url 'commentlikes' comment.id %}">♥ {{comment.like_user_comment.count}}</a>
 {% endfor %}
